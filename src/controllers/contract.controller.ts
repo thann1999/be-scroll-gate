@@ -5,6 +5,7 @@ import {
   BadRequestException,
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -56,5 +57,10 @@ export class ContractController {
     @Body() contractDto: UpdateContract,
   ) {
     return await this.contractService.update(id, contractDto);
+  }
+
+  @Delete('/:contractId')
+  async deleteContract(@Param('contractId') id: number) {
+    return await this.contractService.remove(id);
   }
 }
